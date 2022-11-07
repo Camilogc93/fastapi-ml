@@ -19,10 +19,10 @@ import os
 import numpy as np
 
 # Read in data
-x_train = pd.read_csv('datasets/x_train.csv', header = None).to_numpy()
-y_train = np.ravel(pd.read_csv('datasets/y_train.csv', header = None).to_numpy())
-x_test = pd.read_csv('datasets/x_test.csv', header = None).to_numpy()
-y_test = np.ravel(pd.read_csv('datasets/y_test.csv', header = None).to_numpy())
+x_train = pd.read_csv('data/x_train.csv', header = None).to_numpy()
+y_train = np.ravel(pd.read_csv('data/y_train.csv', header = None).to_numpy())
+x_test = pd.read_csv('data/x_test.csv', header = None).to_numpy()
+y_test = np.ravel(pd.read_csv('data/y_test.csv', header = None).to_numpy())
 
 # Fit a model
 logReg = LogisticRegression(class_weight = 'balanced')
