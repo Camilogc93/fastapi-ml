@@ -30,6 +30,7 @@ async def predict(data: FeatureDataInstance):
     prediction = clf.predict([data.X])
     
    # print(prediction)
+    # print(prediction)
     
     list_1 = prediction.tolist()
     
