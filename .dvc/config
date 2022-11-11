@@ -1,4 +1,4 @@
 [core]
     remote = remote_storage
 ['remote "remote_storage"']
-    url = gs://model-sre/data-model
+    url = gs://data-version-scl/datasets
