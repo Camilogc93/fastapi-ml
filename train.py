@@ -17,6 +17,9 @@ import matplotlib.pyplot as plt
 import json
 import os
 import numpy as np
+import pickle
+from yellowbrick.classifier import confusion_matrix
+from yellowbrick.classifier import ClassificationReport
 
 # Read in data
 x_train = pd.read_csv('data/x_train.csv', header = None).to_numpy()
@@ -34,7 +37,16 @@ with open("metrics.txt", "w") as outfile:
     outfile.write("Accuracy: " + str(acc) + "\n")
 
 # Plot it
-disp = ConfusionMatrixDisplay.from_estimator(
-    model, x_test, y_test, normalize="true", cmap=plt.cm.Blues
+disp = confusion_matrix(
+    model, x_test, y_test, normalize="true", classes=['1', '0']
 )
-plt.savefig("plot.png")
+plt.savefig("confusion.png")
+
+
+plot = ClassificationReport(
+    model, x_test, y_test, support=True
+)
+plt.savefig("report.png")
+
+with open('modelo/model_pkl', 'wb') as files:
+    pickle.dump(model, files)
