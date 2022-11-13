@@ -8,7 +8,7 @@ jobs:
     container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
           - id: 'auth'
-      uses: 'google-github-actions/auth@v0.4.0'
+      uses: 'google-github-actions/auth@v0'
       with:
          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
       - uses: actions/checkout@v3
