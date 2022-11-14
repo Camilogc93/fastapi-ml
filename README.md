@@ -127,16 +127,12 @@ Para este caso hay 2 casos muy diferentes con métricas muy distintas a la hora 
 
 Caso SRE  
 
-SLI
+Como métricas de un servicio lo mas importante es medir la disponibilidad de la API, cantidad de llamadas realizadas/ errores, el tiempo de respuesta y tanto el uptime como downtime a la hora de escalar.
+La disponibilidad de la API es una métrica básica que nos realmente cuanto tiempo estuvo disponible cuando se necesito el servicio. Esto acompañado de los errores detectados número de request/fallidos.
 
-Como parte de la definición de métricas es necesario tener un concepto del uso del API, según el set de datos, estos no necesitan 
+Para tener un mínimo de pods y no incurrir en gastos innecesarios es bueno tener estadísticas según el numero de request, la política de auto escalado cuanto tarda en crear nuevos pods y estos cuando se dejan de utilizar en cuanto se destruyen.
+Las definición de métricas normalmente se hace teniendo en cuenta las necesidades del negocio y como el modelo de ML impacta como servicio, es por esto que estas métricas pueden ser variadas y establecidas con unos limites de funcionalidad aceptable, por ejemplo después de realizar un monitoreo con Prometrus y Grafana para visualización, podría evidenciarse que la arquitectura diseña por más disponible y rápida que sea, es muy costosa para el uso que tiene la API, por eso se podría optar por migrar a una arquitectura serveless que es más económica pero agrega una latencia por el coldstart que puede tener un servicio como CloudRun.
 
-Which would be the SLI's metrics for a API and why? Well, API stands for application programming interface. There are various metrics that could be used to measure the success of an API, but some common ones include: -The number of developers using the API -The number of applications built using the API -The number of API calls made -The average response time for API calls -The uptime/downtime of the API
-
-
-Con el caso de la disponibilidad se asocia la escabilidad, ya que el servicio puede fallar con una alta demanda, el cual se mediría el tiempo del Cluster de kubernetes en levantar nuevos pods.
-
-Adicionalmente con la trazabilidad de request de unos días, se puede establecer tanto el uptime como downtime de los auto escalados, esto con el de tener un minino de contenedores disponibles y ahorrar costos.
 
 Como Mlops
 
@@ -155,6 +151,8 @@ Description automatically generated](Aspose.Words.2d547264-a600-440a-b9d7-628c00
 En total se realizaron 123 peticiones a esta nueva API donde se monitoreaban las variables de entrada, estas fueron nombradas X1, hasta X37, siendo todas entre 0 y 1, 
 
 Como se puede apreciar la variable X32, tuvo un valor máximo de 10 lo que indica que el dato esta cambiando su distribución, que no estaba contemplada en el caso inicial de entrenamiento.
+
+Asi mismo, tambien es posible monitorear el F1-score y el recall entre otras metricas de evaluación de los modelos de ML, ya que tenieno los datos y las predicciones podemos verificar exactamente si la predicción fue acertada o no.
 
 Este mismo monitoreo se puede realizar en etapas anteriores sobre las variables de entrada, como un tema data quality que a su vez puede realizarse como un proceso batch una vez al día dependiendo de la necesidad del negocio.
 
