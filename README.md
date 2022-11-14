@@ -8,7 +8,7 @@ Para este desafío se ha diseñado una arquitectura enfocada a proveer un modelo
 
 **Cluster en Kubernetes GCP, Puerto expuesto API:**
 
-![](kubernetes pods.png)
+![](kubernetes.png)
 
 **Data versión control:**
 
