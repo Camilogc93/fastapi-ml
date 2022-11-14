@@ -13,7 +13,7 @@ app = FastAPI(debug=False)
 
             
 ###### Initiate Aporia ######
-aporia.init(token="0f1dd74d2344ea2d2eb52f793bce3c46e1dfb88b0d497e863e0ae20845b98bb0", 
+aporia.init(token=XXXXXXXXXXXXXXX", 
             environment="local-dev", 
             verbose=True)
 
