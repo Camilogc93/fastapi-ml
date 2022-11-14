@@ -10,6 +10,7 @@ Para este desafío se ha diseñado una arquitectura enfocada a proveer un modelo
 
 ![](kubernetes.png)
 
+
 **Data versión control:**
 
 Como buenas prácticas, en Machine Learning no solo se trata de versionar el código, también los datos son por esto que con la ayuda de DVC, se puede tener en un repositorio externo diferentes versiones de los dataset de entrenamiento de los modelos, desde los datos naturales hasta el feature engenieering. Adicionalmente esto facilita a la hora de reproducción en otros ambientes, ya que los datos se guardan en un repositorio externo y no se comparten atravez de git.
