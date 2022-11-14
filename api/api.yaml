@@ -1,0 +1,50 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "nginx-1"
+  namespace: "default"
+  labels:
+    app: "ml"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "ml"
+  template:
+    metadata:
+      labels:
+        app: "ml"
+    spec:
+      containers:
+          - name: "ml-1"
+            image: "gcr.io/jgomez-test/ml:tag1"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "nginx-1-hpa-796n"
+  namespace: "default"
+  labels:
+    app: "ml"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "nginx-1"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      target:
+        type: "Utilization"
+        averageUtilization: 80
+        spec:
+  template:
+    spec:
+      containers:
+        - name: ml-1
+          resources:
+            requests:
+              memory: 125Mi
