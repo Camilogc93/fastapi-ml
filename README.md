@@ -93,6 +93,12 @@ Código de la api con adicional para hacer el monitoreo con Aporia y archivo, te
 Codigo del codigo que testea la API online para los 45s de exposición, reporte de resultados archivo Html
 
 
+
+
+
+
+
+
 **DESAFIO**
 
 1. Exponer el modelo serializado a través API REST.
@@ -129,6 +135,11 @@ Normalmente el caso 1 brinda una seguridad suficiente para un modelo de ML, ya q
 
 Para este caso hay 2 casos muy diferentes con métricas muy distintas a la hora de exponer un modelo de ML como servicio, por un lado está la arquitectura vista como microservicios donde lo que importa es que el sistema responda, se escale, este dispone cuando tenga alta demanda para poder cumplir con el objetivo del microservicio, por otro lado esta el punto de vista del modelo, como Mlops es importante monitorear el Concept drift y Data drift , conceptos sobre el cambio en las distribuciones de los datos de entrada y de salida, que afectan la calidad de predicción del modelo, lo que desencadena un entrenamiento continuo del modelo según los datos varíen sobre el tiempo.
 
+
+
+
+
+
 Caso SRE  
 
 Como métricas de un servicio lo mas importante es medir la disponibilidad de la API, cantidad de llamadas realizadas/ errores, el tiempo de respuesta y tanto el uptime como downtime a la hora de escalar.
@@ -148,9 +159,8 @@ Para ello se hizo una versión 2.0 de la API con esta implementación, la cual s
 
 **Dashboard**
 
-![Graphical user interface, application
 
-Description automatically generated](Aspose.Words.2d547264-a600-440a-b9d7-628c00d41116.004.png)
+![](Aspose.Words.2d547264-a600-440a-b9d7-628c00d41116.004.png)
 
 En total se realizaron 123 peticiones a esta nueva API donde se monitoreaban las variables de entrada, estas fueron nombradas X1, hasta X37, siendo todas entre 0 y 1, 
 
