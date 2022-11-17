@@ -1,8 +1,8 @@
-﻿**Arquitectura desafío** 
+#Arquitectura desafío
 
-**Introducción** 
+##_Introducción_
 
-Para este desafío se ha diseñado una arquitectura enfocada a proveer un modelo de machine learning como servicio, a través de una API REST, esta arquitectura contempla diferentes fases expuestas de la siguiente forma:
+Para este desafío se ha diseñado una arquitectura enfocada a proveer un modelo de machine learning como servicio, a través de una API REST, esta arquitectura contempla diferentes fases expuestas de la siguiente imagen:
 
 ![](Aspose.Words.2d547264-a600-440a-b9d7-628c00d41116.001.jpeg)
 
@@ -62,7 +62,7 @@ Para la automatización y la creación de la infraestructura en GCP, se ha utili
 Herramientas utilizadas: Terraform
 
 
-**Distribución de carpetas-ramas**
+##Distribución de carpetas-ramas
 
 *Model -carpeta-rama*
 
@@ -100,27 +100,27 @@ Codigo del codigo que testea la API online para los 45s de exposición, reporte 
 
 
 
-**DESAFIO**
+##DESAFIO
 
 1. Exponer el modelo serializado a través API REST.
 
 R// Expuesto en la arquitectura como un contenedor con FASTAPI alojada en un cluster de Kubernetes en GCP.
 
-1. Automatizar el proceso de construcción y despliegue de la API, utilizando uno o varios servicios cloud.
+2. Automatizar el proceso de construcción y despliegue de la API, utilizando uno o varios servicios cloud.
 
 R// proceso realizado con Gitgug Actions - Container Registry – Kubernetes, 
 
-1. Hacer pruebas de estrés a la API con el modelo expuesto con al menos 50.000 requests durante 45 segundos. Para esto debes utilizar esta herramienta y presentar las métricas obtenidas.
+3. Hacer pruebas de estrés a la API con el modelo expuesto con al menos 50.000 requests durante 45 segundos. Para esto debes utilizar esta herramienta y presentar las métricas obtenidas.
 
 R// para las pruebas se decidió cambiar la herramienta de testeo y utilizar Locust , ya que es una herramienta para testear APIs siguiendo lenguaje Python.
 
 Ver resultados en archivo repor\_lr, fue testeado con el modelo Logostic regresion     
 
-1. El proceso de creación de infraestructura debe ser realizado con Terraform.
+4. El proceso de creación de infraestructura debe ser realizado con Terraform.
 
 R// Creación de Clúster de Kubernetes con VPC, además de Storage para el versionamiento de datos y modelos.
 
-1. . ¿Cuáles serían los mecanismos ideales para que sólo sistemas autorizados puedan acceder a esta API? (NO es necesario implementarlo). a. ¿Este mecanismo agrega algún nivel de latencia al consumidor? ¿Por qué?
+5. ¿Cuáles serían los mecanismos ideales para que sólo sistemas autorizados puedan acceder a esta API? (NO es necesario implementarlo). a. ¿Este mecanismo agrega algún nivel de latencia al consumidor? ¿Por qué?
 
 Para este casi se exponen 2 casos que pueden ir tanto independientes como trabajando en conjunto.
 
@@ -132,11 +132,9 @@ Los dos casos se pueden complementar para tener mayor seguridad, ahora bien, pue
 
 Normalmente el caso 1 brinda una seguridad suficiente para un modelo de ML, ya que esta rara vez se exponen directamente a un usuario y van acompañados de otras fases de procesamiento de datos que ejecutan un pipeline de transformación, así pueden entregan los datos como el modelo se entrenó y el sistema completo es un conjunto de micro servicios que van pasando el dato de fase en fase.
 
-1. . ¿Cuáles serían los SLIs y SLOs que definirías y por qué?
+6. ¿Cuáles serían los SLIs y SLOs que definirías y por qué?
 
 Para este caso hay 2 casos muy diferentes con métricas muy distintas a la hora de exponer un modelo de ML como servicio, por un lado está la arquitectura vista como microservicios donde lo que importa es que el sistema responda, se escale, este dispone cuando tenga alta demanda para poder cumplir con el objetivo del microservicio, por otro lado esta el punto de vista del modelo, como Mlops es importante monitorear el Concept drift y Data drift , conceptos sobre el cambio en las distribuciones de los datos de entrada y de salida, que afectan la calidad de predicción del modelo, lo que desencadena un entrenamiento continuo del modelo según los datos varíen sobre el tiempo.
-
-
 
 
 
