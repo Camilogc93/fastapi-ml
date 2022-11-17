@@ -1,6 +1,6 @@
-#Arquitectura desafío
+# Arquitectura desafío
 
-##_Introducción_
+## _Introducción_
 
 Para este desafío se ha diseñado una arquitectura enfocada a proveer un modelo de machine learning como servicio, a través de una API REST, esta arquitectura contempla diferentes fases expuestas de la siguiente imagen:
 
