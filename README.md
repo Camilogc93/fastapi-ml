@@ -121,12 +121,12 @@ R// proceso realizado con Gitgug Actions - Container Registry – Kubernetes,
 R// para las pruebas se decidió cambiar la herramienta de testeo y utilizar Locust , ya que es una herramienta para testear APIs siguiendo lenguaje Python.
 
 Ver resultados en archivo repor\_lr, fue testeado con el modelo Logostic regresion     
-[Markdown Live Preview](https://drive.google.com/file/d/150sJ4Q2mWoZGSYM_FYOhJ0mpiOpg3LXb/view?usp=sharing)
+[Ver reporte HTML](https://drive.google.com/file/d/150sJ4Q2mWoZGSYM_FYOhJ0mpiOpg3LXb/view?usp=sharing).
 
 4. El proceso de creación de infraestructura debe ser realizado con Terraform.
 
 R// Creación de Clúster de Kubernetes con VPC, además de Storage para el versionamiento de datos y modelos.
-   [Markdown Live Preview]([https://markdownlivepreview.com/](https://github.com/Camilogc93/fastapi-ml/tree/main2/Tf-infraestructura/Cluster)).
+   [Terraform code](https://github.com/Camilogc93/fastapi-ml/tree/main2/Tf-infraestructura/Cluster).
 
 5. ¿Cuáles serían los mecanismos ideales para que sólo sistemas autorizados puedan acceder a esta API? (NO es necesario implementarlo). a. ¿Este mecanismo agrega algún nivel de latencia al consumidor? ¿Por qué?
 
