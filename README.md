@@ -121,6 +121,7 @@ R// proceso realizado con Gitgug Actions - Container Registry – Kubernetes,
 R// para las pruebas se decidió cambiar la herramienta de testeo y utilizar Locust , ya que es una herramienta para testear APIs siguiendo lenguaje Python.
 
 Ver resultados en archivo repor\_lr, fue testeado con el modelo Logostic regresion     
+[Markdown Live Preview](https://drive.google.com/file/d/150sJ4Q2mWoZGSYM_FYOhJ0mpiOpg3LXb/view?usp=sharing)
 
 4. El proceso de creación de infraestructura debe ser realizado con Terraform.
 
