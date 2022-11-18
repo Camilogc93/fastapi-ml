@@ -6,9 +6,7 @@ Para este desafío se ha diseñado una arquitectura enfocada a proveer un modelo
 
 ![](Aspose.Words.2d547264-a600-440a-b9d7-628c00d41116.001.jpeg)
 
-**Cluster en Kubernetes GCP, Puerto expuesto API:**
 
-![](kubernetes.png)
 
 
 **Data versión control:**
@@ -110,23 +108,35 @@ Codigo del codigo que testea la API online para los 45s de exposición, reporte 
 
 1. Exponer el modelo serializado a través API REST.
 
-R// Expuesto en la arquitectura como un contenedor con FASTAPI alojada en un cluster de Kubernetes en GCP.
+R// Se ha realizado un despliegue en una arquitectura de Kubernetes, el cluster creado se puede ver en la siguente imagen.
+
+**Cluster en Kubernetes GCP, Puerto expuesto API:**
+
+![](kubernetes.png)
+
+Estar arquitectura fue selecionada para tener una alta disponibilidad y seguridad de la API, tambien ideal para hacer despliegues tipo A/B Testing en momentos donde se requiera evaluar 2 o mas modelos o hacer despliegues tipo Canary ideales para dar entrada en produccion a un nuevo modelo, controlando el trafico desde el balanceador de carga, ademas de poder hacer implementaciones de la API de monitoreo del modelo (Explicado en el ultimo punto) con una carga mas baja de trafico que permita sensar almenos un 10% de los datos.
+Basado en la prueba de estrés a la API tambien se tomo la desicion de una arquitectura en Kubernetes, ya que al usar otra como lo puede ser CloudRun, estos presentan ColdStart que podría relentelizar las respuestas de request a la API. Sin embargo depenpiendo de las necesidades de la API y tambienn de su monitoreo se pueden llegar a tomar las decisiones de acuerdo a su demanda y necesidad.
+
 
 2. Automatizar el proceso de construcción y despliegue de la API, utilizando uno o varios servicios cloud.
 
-R// proceso realizado con Gitgug Actions - Container Registry – Kubernetes, 
+R// proceso realizado con Gitgug Actions - Container Registry – Kubernetes, ademas se incluyo un CT (Continuos training) el cual entrena el modelo automaticamente despues de hacer un push a la rama model y publica sus resultados para tener un tracking me las metricas.
 
 3. Hacer pruebas de estrés a la API con el modelo expuesto con al menos 50.000 requests durante 45 segundos. Para esto debes utilizar esta herramienta y presentar las métricas obtenidas.
 
-R// para las pruebas se decidió cambiar la herramienta de testeo y utilizar Locust , ya que es una herramienta para testear APIs siguiendo lenguaje Python.
+R// para las pruebas se decidió cambiar la herramienta de testeo y utilizar Locust , ya que es una herramienta para testear APIs siguiendo lenguaje Python que ayudaría a tomar los datos el Csv de fake data y que las pruebas no solo sean enfocadas a numeros de request si no a respuesta de diferentes datos sobre el modelo.
 
 Ver resultados en archivo repor\_lr, fue testeado con el modelo Logostic regresion     
 [Ver reporte HTML](https://drive.google.com/file/d/150sJ4Q2mWoZGSYM_FYOhJ0mpiOpg3LXb/view?usp=sharing).
+
+como podria mejorar aun mas la API?, despues de un monitoreo y ver la latencia entre los servicios , podrian realizarce configuraciones sobre el balanceador de carga y sistemas de auto escalado mas agresivos, ya que lo ideal es trabajar con el numero de pods minimo. Adicionalmente el tiempo de respuesta del modelo se puede mejorar usando tenicas de quantización con Onnix https://onnxruntime.ai/ esto permite tener inferencias mas rapidas y modelos mas pequeños. Tambien puede ayudar a utilizar modelos mas complejos o de Deep Learning, manteniendo una inferencia acorde a la necesidad de la respuesta.
 
 4. El proceso de creación de infraestructura debe ser realizado con Terraform.
 
 R// Creación de Clúster de Kubernetes con VPC, además de Storage para el versionamiento de datos y modelos.
    [Terraform code](https://github.com/Camilogc93/fastapi-ml/tree/main2/Tf-infraestructura/Cluster).
+   
+   Ver imagen del punto 1, numero de pods y servicio expuesto.
 
 5. ¿Cuáles serían los mecanismos ideales para que sólo sistemas autorizados puedan acceder a esta API? (NO es necesario implementarlo). a. ¿Este mecanismo agrega algún nivel de latencia al consumidor? ¿Por qué?
 
@@ -148,6 +158,11 @@ Para este caso hay 2 casos muy diferentes con métricas muy distintas a la hora 
 
 
 Caso SRE  
+
+Los Sli's y Slo's, parte desde una necesidad de servio que de sea prestar, por esto es imporante definie un contexto en el cual la API debería funcionar para tener claras las metricas de evaluación.
+
+Supongamos que lo mas importnate es la disponibilidad y que la API deba estar por percentil de 95 minimamente, esto hace que sea necesario monitorear los pods de kubernetes que se lancen correctamente en caso de presentar un error, o se escalen a la demanda de trafico para no dejar de responder.
+
 
 Como métricas de un servicio lo mas importante es medir la disponibilidad de la API, cantidad de llamadas realizadas/ errores, el tiempo de respuesta y tanto el uptime como downtime a la hora de escalar.
 La disponibilidad de la API es una métrica básica que nos realmente cuanto tiempo estuvo disponible cuando se necesito el servicio. Esto acompañado de los errores detectados número de request/fallidos.
