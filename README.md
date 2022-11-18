@@ -13,7 +13,7 @@ Para este desafío se ha diseñado una arquitectura enfocada a proveer un modelo
 
 Como buenas prácticas, en Machine Learning no solo se trata de versionar el código, también los datos son por esto que con la ayuda de DVC, se puede tener en un repositorio externo diferentes versiones de los dataset de entrenamiento de los modelos, desde los datos naturales hasta el feature engenieering. Adicionalmente esto facilita a la hora de reproducción en otros ambientes, ya que los datos se guardan en un repositorio externo y no se comparten atravez de git.
 
-* Herramientas utilizadas: DVC, Google Storage
+* Herramientas utilizadas: [DVC](https://dvc.org/), Google Storage
 
 ![Overview | Data Version Control · DVC](Aspose.Words.2d547264-a600-440a-b9d7-628c00d41116.002.png)
 
@@ -24,7 +24,7 @@ Con el fin de tener un proceso automatizado, el entrenamiento del modelo sobre e
 
 En este caso en particular no hay necesidad de utilizar más recursos para el entramiento, pero de ser necesario el mismo proceso se le puede agregar una capa para entrenarse en GCP usando computo más pesado.
 
-* Herramientas utilizadas: Github Actions, CML
+* Herramientas utilizadas: [Github Actions](https://github.com/features/actions), [CML](https://cml.dev/)
 
 
 **Experiment Tracking**
@@ -45,7 +45,7 @@ Como parte de tener un pipeline para todo el proceso de entrenamiento y desplieg
 
 Esta fase de deployment del modelo se encuentra automatiza con la ayuda de Github Actions, que activa el trigger en GPC para aplicar los cambios en el Cluster de Kubernetes que aloja la API, aun que este proceso es automático, no se encuentra directamente conectado al continuos training, ya que primero se experimentan con una series de cambio en los hyper parámetros de los modelos y cuando se tienen el resultado con buenas métricas, se revisa su versión y se actualiza el código de la API en la rama “api”, que lanza el despliegue con la versión correspondiente.
 
-* Herramientas utilizadas: Fastapi, Kubernetes,DVC, Github, Github Actions, GPC Container registry.
+* Herramientas utilizadas: [Fastapi](https://fastapi.tiangolo.com/), Kubernetes,DVC, Github, Github Actions, [GPC Container registry](https://cloud.google.com/container-registry).
 
 
 **Model Monitoring**
@@ -54,14 +54,14 @@ Como parte del ciclo de un modelo de ML, una parte primordial es su monitoreo, e
 
 Este monitoreo se hace a través de Fastapi y la Api propia de aporía para realizar la configuración.
 
-* Herramientas utilizadas: Aporia
+* Herramientas utilizadas: [Aporia](https://www.aporia.com/)
 
 
 **Infraestructura como código**
 
 Para la automatización y la creación de la infraestructura en GCP, se ha utilizado Terraform para la creación de los Bucket y el clúster de Kubernetes con sus respectivas configuraciones de VCP y subneting.
 
-* Herramientas utilizadas: Terraform
+* Herramientas utilizadas: [Terraform](https://www.terraform.io/)
 
 
 
